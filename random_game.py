@@ -1,7 +1,7 @@
 import random
 
 def sec_num():
-    s_num = random.randint(0,101)
+    s_num = random.randint(1,101)
     try:
         c = 0
         while True:
