@@ -1,9 +1,10 @@
-prime_list = []
+
 
 def primelist(num):
     i = 0
     j = 3
-    while i <= num:
+    prime_list = []
+    while i < num:
         d = 0
         for k in range(3,int(j**0.5)+1,2):
             if j % k == 0:
