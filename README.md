@@ -1,4 +1,4 @@
-# Fun-Projects
+# Python Single File Solutions
 These are Python projects for fun
 The movie_pick.py was originally developed by Python Engineer YouTube channel. I modifed his code a little bit for my requirements.
 The original source for this file can be found at:
