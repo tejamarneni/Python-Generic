@@ -1,7 +1,7 @@
-
+prime_list = list()
 
 def primelist(num):
-    i = 0
+    i = 1
     j = 3
     prime_list = []
     while i < num:
