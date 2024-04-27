@@ -19,7 +19,6 @@ def primelist(num):
             prime_list.append(j)
         
         # Move to the next odd number
-        print(j)
         j += 2
     
     return prime_list
