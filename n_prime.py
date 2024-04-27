@@ -4,7 +4,7 @@ def primelist(num):
     i = 1
     j = 3
     prime_list = []
-    while i < num:
+    while i <= num:
         d = 0
         for k in range(3,int(j**0.5)+1,2):
             if j % k == 0:
