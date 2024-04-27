@@ -3,8 +3,8 @@ prime_list = list()
 def primelist(num):
     i = 1
     j = 3
-    prime_list = []
-    while i <= num:
+    prime_list = [2]
+    while i < num:
         d = 0
         for k in range(3,int(j**0.5)+1,2):
             if j % k == 0:
