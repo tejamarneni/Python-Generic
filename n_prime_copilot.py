@@ -11,7 +11,6 @@ def primelist(num):
         
         # Check if j is divisible by any odd number from 3 to sqrt(j)
         for k in range(3, int(j**0.5) + 1, 2):
-            print(k)
             if j % k == 0:
                 is_prime = False
                 break  # No need to continue checking
