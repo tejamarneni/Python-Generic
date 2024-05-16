@@ -27,10 +27,10 @@ def primelist(num):
             prime_list.append(j)
         # Move to the next odd number
         j += 2
-    return sum(prime_list)
+    return prime_list
 
 
 
 # Example usage: Generate the first 10 prime numbers
-print(primelist(500000))
+print(primelist(10))
 
