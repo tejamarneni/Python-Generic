@@ -5,7 +5,7 @@ def sec_num():
     try:
         c = 0
         while True:
-            u_num = int(input("Enter a number:\n"))
+            u_num = int(input("Enter a positive number greater than 0:\n"))
             if u_num > 0 and u_num > s_num:
                 print("To Big. Try again")
                 c += 1
