@@ -179,7 +179,7 @@ def horizontal_barchart(
         # Display value on top of each bar
         plt.text(
             bar.get_width(),
-            bar.get_y() + bar.get_height() / 2,
+            bar.get_y() + (bar.get_height() / 2),
             f"{bar.get_width():,.2f}",
             va=va,
             ha=ha,
