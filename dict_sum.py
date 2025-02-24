@@ -15,5 +15,19 @@ for emp in emp_dict['Employee'].values():
 
 print(emp_dict)
 
+#Another Example
+student_grades = {"Alice":{"Math": 90, "Science": 80},
+                  "Bob": {"Math": 70, "Science": 60},
+                  "Charlie": {"Math": 60, "Science": 70}}
+
+for key,val in student_grades.items():
+    total = sum(val.values())
+    student_grades[key]["Total"] = total
+
+    
+print(student_grades)
+
+
+
 
 
