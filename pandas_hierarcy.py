@@ -1,0 +1,18 @@
+#This is to Read excel file that has hierarchical data
+import pandas as pd
+df2 = pd.read_excel('hierarchical_month.xlsx',dtype_backend='numpy_nullable',index_col=[0,1],header=[0,1,2])
+df2
+
+
+#Example Data
+'''
+Year		2024						2025					
+Quarter		Q1			Q2			Q1			Q2		
+Month		Jan	Feb	Mar	Apr	May	Jun	Jan	Feb	Mar	Apr	May	Jun
+Region	Sub-Region												
+America	East	747398	535284	732808	813103	837820	648909	839412	631637	661477	770262	969348	69353
+	West	387577	80814	546570	124948	94708	594056	853760	383192	909199	843381	416264	659514
+	South	805488	668746	225043	338052	87191	914132	247275	516308	175263	209552	219297	986133
+Europe	West	337108	730517	908640	353669	507520	87754	194898	72736	901541	459382	686768	413977
+	East	746094	448731	419539	923817	452684	54402	514564	330887	118669	281947	138897	489961
+ '''
