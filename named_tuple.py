@@ -19,7 +19,7 @@ df = pd.DataFrame(player_data)
 # 4. Display the DataFrame
 print(df)
 
-------------------------------------------------------2nd Example----------------------------------------------------------------
+#------------------------------------------------------2nd Example----------------------------------------------------------------
 
 # Define the structure of our function's return value
 TextStats = namedtuple('TextStats', ['word_count', 'char_count', 'num_lines'])
