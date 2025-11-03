@@ -15,5 +15,6 @@ def fill_func(file_name):
     df.to_csv('C:/Users/tejam/Desktop/' + f_name + '.csv',index = False) 
         
 
-fill_func('C:/Users/tejam/Desktop/train.csv')    
+fill_func('C:/Users/dummypth/train.csv')    
+
    
