@@ -1,0 +1,9 @@
+python -m ipykernel install --sys-prefix --name=torch_practice #installs ipykernel in the virtual environment
+python -m ipykernel install --user --name=torch_practice #installs ipykernel in the Global environment
+jupyter kernelspec uninstall torch_practice -y #uninstalls jupyter kernels
+jupyter kernelspec list #shows the list of jupyter kernels installed
+pip3 install package #installs the required package
+python3 -m venv my_env #creates a virtual environment
+source my_env/bin/activate #activates the virtual environment
+conda create --name my_env python=3.11 #creates a virtual environment using ananconda
+conda activate my_env #activates the virtual environment
