@@ -59,5 +59,5 @@ spark.stop()
 Replace the placeholders with your actual S3 and Snowflake credentials, bucket names, object keys, and table names.
 Notes
 Make sure to install the Snowflake Spark Connector and add the Snowflake JDBC driver to your Spark configuration.
-Adjust the sfTable option to match your Snowflake table name.'''
-This script assumes a simple CSV file structure. If your file has a more complex structure, you may need to modify the read.csv options accordingly.
+Adjust the sfTable option to match your Snowflake table name.
+This script assumes a simple CSV file structure. If your file has a more complex structure, you may need to modify the read.csv options accordingly.'''
