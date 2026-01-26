@@ -1,6 +1,7 @@
+import re
+import os
 import pdfplumber
 import pandas as pd
-import re
 
 def clean_pdf(path: str, year: int, target_pages: list, pattern: str) -> pd.DataFrame:
     # 1. Reset the list inside the function to avoid data duplication
@@ -12,7 +13,8 @@ def clean_pdf(path: str, year: int, target_pages: list, pattern: str) -> pd.Data
                 page = pdf.pages[p_idx]
                 words = page.extract_words()
                 
-                if not words: continue
+                if not words: 
+                    continue
                 
                 df_words = pd.DataFrame(words)
                 page_lines = df_words.groupby("top")["text"].apply(lambda x: " ".join(x)).reset_index()
@@ -23,18 +25,21 @@ def clean_pdf(path: str, year: int, target_pages: list, pattern: str) -> pd.Data
                         all_transactions.append({
                             "Date": f"{m[0]}/{year}",
                             "Full_Description": m[1].strip(),
-                            "Amount": float(m[2])
+                            "Amount": m[2]
                         })
             except IndexError:
                 print(f"Warning: Page index {p_idx} not found in {path}")
 
     df_final = pd.DataFrame(all_transactions)
-    if df_final.empty: return df_final
+    if df_final.empty: 
+        return df_final
 
     # 2. Sequential Cleaning
     # Remove phone numbers first (often contain hyphens/spaces that confuse city splits)
     phone_pattern = r'\d{3}[-\s]\d{3}[-\s]\d{4}'
     df_final['Full_Description'] = df_final['Full_Description'].str.replace(phone_pattern, '', regex=True)
+
+    df_final["Amount"] = df_final["Amount"].str.replace("$","",regex=False).apply(float)
 
     # Remove store numbers (#72) and long numeric IDs
     df_final['Full_Description'] = df_final['Full_Description'].str.replace(r'#\d+', '', regex=True)
@@ -54,10 +59,30 @@ def clean_pdf(path: str, year: int, target_pages: list, pattern: str) -> pd.Data
     
     return df_final.reset_index(drop=True)
 
-# Slicing the pages to start from Page 9 [cite: 249]
-pdf_path = "/Users/dummy.pdf"
-target_pages = [8, 9, 10, 11] 
-pattern = r'(\d{2}/\d{2})\s+(.*?)\s+\$(\d+\.\d+)'
+# Define the path relative to the container's WORKDIR
+data_folder = 'data'
+pattern = r'(\d{2}/\d{2})\s+(.*?)\s+(-?\$\d+\.\d+)'
+year_config = {
+    2019: [8, 9, 10, 11, 12],
+    2020: [8, 9, 10, 11],
+    2021: [8, 9, 10, 11],
+    2022: [8, 9, 10, 11, 12],
+    2023: [8, 9, 10, 11, 12, 13],
+    2024: [8, 9, 10, 11, 12],
+    2025: [8, 9, 10, 11, 12]
+}
 
-df_2021 = clean_pdf(path=pdf_path, year=2021, target_pages=target_pages, pattern=pattern)
-df_2021.to_csv("/Users/dummy.csv",index=False)
+for filename in os.listdir(data_folder):
+    if filename.endswith(".pdf"):
+        # Extract 4 digits from the filename to get the year
+        year_match = re.search(r'(\d{4})', filename)
+        if year_match:
+            file_year = int(year_match.group(1))
+            pages = year_config.get(file_year, [8, 9, 10, 11]) # Default if not in dict
+            
+            filepath = os.path.join(data_folder, filename)
+            df = clean_pdf(path=filepath, year=file_year, target_pages=pages, pattern=pattern)
+            
+            output_path = os.path.join(data_folder, f'savor_{file_year}.csv')
+            df.to_csv(output_path, index=False)
+            print(f"Successfully processed {file_year}")
