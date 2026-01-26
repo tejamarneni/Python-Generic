@@ -96,9 +96,9 @@ class BatchManager:
             if not df.empty and expected is not None:
                 calc = round(df['Amount'].sum(), 2)
                 if calc == round(expected, 2):
-                    status = "✅ PASS"
+                    status = "PASS"
                 else:
-                    status = f"❌ FAIL (Diff: {round(expected - calc, 2)})"
+                    status = f"FAIL (Diff: {round(expected - calc, 2)})"
             
             self.audit_log.append({"File": filename, "Status": status})
             print(f"File: {filename} | {status}")
