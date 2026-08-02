@@ -19,7 +19,7 @@ while current_date <= end_date:
     current_date += timedelta(days=1)
 
 # 3. Hand the entire list to Spark in ONE shot using Python's argument unpacking (*)
-df = spark.read.parquet(*list_of_paths)
+df = spark.read.parquet(list_of_paths)
 
 # 4. Proceed with your cleaning and calculations
 # df_clean = df.filter(...).groupBy(...)
