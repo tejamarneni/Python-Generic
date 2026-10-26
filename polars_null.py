@@ -9,7 +9,7 @@ df = pl.read_csv(
         "is_active": pl.Boolean,
         "notes": pl.String,
     },
-    null_values=["", "NA", "N/A", "null", "-"],
+    null_values=["", "NA", "N/A", "na", "n/a", "nan", "NaN", "null", "NULL", "-"],
     try_parse_dates=False,        # important - date parsing causes this error a lot
     infer_schema_length=10000
 )
